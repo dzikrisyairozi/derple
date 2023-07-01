@@ -7,7 +7,7 @@ import { JWT } from "next-auth/jwt";
 
 // import { createUser, getUser } from "./actions";
 import { SessionInterface, UserProfile } from "@/types/common.types";
-import { getUser } from "./action";
+import { createUser, getUser } from "./action";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -66,9 +66,9 @@ export const authOptions: NextAuthOptions = {
       try {
         const userExists = await getUser(user?.email as string) as { user?: UserProfile }
         
-        // if (!userExists.user) {
-        //   await createUser(user.name as string, user.email as string, user.image as string)
-        // }
+        if (!userExists.user) {
+          await createUser(user.name as string, user.email as string, user.image as string)
+        }
 
         return true;
       } catch (error: any) {
