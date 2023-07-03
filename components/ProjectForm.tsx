@@ -10,6 +10,7 @@ import { categoryFilters } from '@/constant';
 import { FormState, ProjectInterface, SessionInterface } from '@/types/common.types';
 import FormField from './FormField';
 import CustomMenu from './CustomMenu';
+import { createNewProject, fetchToken } from '@/lib/action';
 
 type Props = {
     type: string,
@@ -63,14 +64,14 @@ const ProjectForm = ({ type, session, project }: Props) => {
 
         setSubmitting(true)
 
-        // const { token } = await fetchToken()
+        const { token } = await fetchToken()
 
         try {
-            // if (type === "create") {
-            //     await createNewProject(form, session?.user?.id, token)
+            if (type === "create") {
+                await createNewProject(form, session?.user?.id, token)
 
-            //     router.push("/")
-            // }
+                router.push("/")
+            }
             
             // if (type === "edit") {
             //     await updateProject(form, project?.id as string, token)
@@ -110,7 +111,43 @@ const ProjectForm = ({ type, session, project }: Props) => {
                 )}
             </div>
 
-           
+            <FormField
+                title="Title"
+                state={form.title}
+                placeholder="Flexibble"
+                setState={(value) => handleStateChange('title', value)}
+            />
+
+            <FormField
+                title='Description'
+                state={form.description}
+                placeholder="Showcase and discover remarkable developer projects."
+                isTextArea
+                setState={(value) => handleStateChange('description', value)}
+            />
+
+            <FormField
+                type="url"
+                title="Website URL"
+                state={form.liveSiteUrl}
+                placeholder="https://dzikrisyairozi.com"
+                setState={(value) => handleStateChange('liveSiteUrl', value)}
+            />
+
+            <FormField
+                type="url"
+                title="GitHub URL"
+                state={form.githubUrl}
+                placeholder="https://github.com/dzikrisyairozi"
+                setState={(value) => handleStateChange('githubUrl', value)}
+            />
+
+            <CustomMenu
+                title="Category"
+                state={form.category}
+                filters={categoryFilters}
+                setState={(value) => handleStateChange('category', value)}
+            />
 
             <div className="flexStart w-full">
                 <Button
