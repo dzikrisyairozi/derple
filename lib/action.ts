@@ -80,33 +80,33 @@ const makeGraphQLRequest = async (query: string, variables = {}) => {
     }
   };
 
-  // export const updateProject = async (form: ProjectForm, projectId: string, token: string) => {
-  //   function isBase64DataURL(value: string) {
-  //     const base64Regex = /^data:image\/[a-z]+;base64,/;
-  //     return base64Regex.test(value);
-  //   }
+  export const updateProject = async (form: ProjectForm, projectId: string, token: string) => {
+    function isBase64DataURL(value: string) {
+      const base64Regex = /^data:image\/[a-z]+;base64,/;
+      return base64Regex.test(value);
+    }
   
-  //   let updatedForm = { ...form };
+    let updatedForm = { ...form };
   
-  //   const isUploadingNewImage = isBase64DataURL(form.image);
+    const isUploadingNewImage = isBase64DataURL(form.image);
   
-  //   if (isUploadingNewImage) {
-  //     const imageUrl = await uploadImage(form.image);
+    if (isUploadingNewImage) {
+      const imageUrl = await uploadImage(form.image);
   
-  //     if (imageUrl.url) {
-  //       updatedForm = { ...updatedForm, image: imageUrl.url };
-  //     }
-  //   }
+      if (imageUrl.url) {
+        updatedForm = { ...updatedForm, image: imageUrl.url };
+      }
+    }
   
-  //   client.setHeader("Authorization", `Bearer ${token}`);
+    client.setHeader("Authorization", `Bearer ${token}`);
   
-  //   const variables = {
-  //     id: projectId,
-  //     input: updatedForm,
-  //   };
+    const variables = {
+      id: projectId,
+      input: updatedForm,
+    };
   
-  //   return makeGraphQLRequest(updateProjectMutation, variables);
-  // };
+    return makeGraphQLRequest(updateProjectMutation, variables);
+  };
   
   export const fetchAllProjects = (category?: string | null, endcursor?: string | null) => {
     client.setHeader("x-api-key", apiKey);
