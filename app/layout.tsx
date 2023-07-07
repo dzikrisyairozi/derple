@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "Flexibble",
-  description: "Showcase and discover developer projects",
+  title: "DeRPLe",
+  description: "Showcase and discover your projects",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <main>{children}</main>
+        <main className="bg-gray-900 text-white">{children}</main>
         <Footer />
       </body>
     </html>

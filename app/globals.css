@@ -103,7 +103,7 @@ body {
 
 /* Footer */
 .footer {
-  @apply flex-col paddings w-full gap-20 bg-light-white;
+  @apply flex-col paddings w-full gap-20 bg-gray-900 text-white;
 }
 
 .footer_copyright {
@@ -121,7 +121,7 @@ body {
 
 /* Modal */
 .modal {
-  @apply fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto bg-black/80;
+  @apply fixed z-10 left-0 right-0 top-0 bottom-0 mx-auto text-black;
 }
 
 .modal_wrapper {
