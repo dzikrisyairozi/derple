@@ -10,7 +10,7 @@ import { categoryFilters } from '@/constant';
 import { FormState, ProjectInterface, SessionInterface } from '@/types/common.types';
 import FormField from './FormField';
 import CustomMenu from './CustomMenu';
-import { createNewProject, fetchToken } from '@/lib/action';
+import { createNewProject, fetchToken, updateProject } from '@/lib/action';
 
 type Props = {
     type: string,
@@ -73,11 +73,11 @@ const ProjectForm = ({ type, session, project }: Props) => {
                 router.push("/")
             }
             
-            // if (type === "edit") {
-            //     await updateProject(form, project?.id as string, token)
+            if (type === "edit") {
+                await updateProject(form, project?.id as string, token)
 
-            //     router.push("/")
-            // }
+                router.push("/")
+            }
 
         } catch (error) {
             alert(`Failed to ${type === "create" ? "create" : "edit"} a project. Try again!`);
@@ -114,7 +114,7 @@ const ProjectForm = ({ type, session, project }: Props) => {
             <FormField
                 title="Title"
                 state={form.title}
-                placeholder="Flexibble"
+                placeholder="DeRPLe"
                 setState={(value) => handleStateChange('title', value)}
             />
 
