@@ -2,13 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { getCurrentUser } from "@/lib/session"
-// import { getProjectDetails } from "@/lib/actions"
 import Modal from "@/components/Modal"
-// import ProjectActions from "@/components/ProjectActions"
-// import RelatedProjects from "@/components/RelatedProjects"
 import { ProjectInterface } from "@/types/common.types"
 import { getProjectDetails } from "@/lib/action"
 import RelatedProjects from "@/components/RelatedProject"
+import ProjectActions from "@/components/ProjectActions"
 
 const Project = async ({ params: { id } }: { params: { id: string } }) => {
     const session = await getCurrentUser()
@@ -52,11 +50,11 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                     </div>
                 </div>
 
-                {/* {session?.user?.email === projectDetails?.createdBy?.email && (
+                {session?.user?.email === projectDetails?.createdBy?.email && (
                     <div className="flex justify-end items-center gap-2">
                         <ProjectActions projectId={projectDetails?.id} />
                     </div>
-                )} */}
+                )}
             </section>
 
             <section className="mt-14">
